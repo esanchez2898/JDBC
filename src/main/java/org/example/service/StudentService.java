@@ -6,7 +6,7 @@ public class StudentService {
 
     public static void updateStudent(int id, String name, int age, String career) {
         if (age < 0) {
-            System.out.println("edad invalida ");
+            System.out.println("invalid age");
             return;
         }
         StudentDAO.updateStudent(id, name, age, career);
@@ -14,7 +14,7 @@ public class StudentService {
 
     public static void deleteStudent(int id) {
         if (id <= 0) {
-            System.out.println("id invalido");
+            System.out.println("invalid id");
             return;
         }
         StudentDAO.deleteStudent(id);

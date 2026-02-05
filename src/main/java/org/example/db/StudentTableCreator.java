@@ -19,7 +19,7 @@ public class StudentTableCreator {
         try(Connection conn = DatabaseConnection.getConnection();
             Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
-            System.out.println("Tabla student creada exitosamente");
+            System.out.println("student table created");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

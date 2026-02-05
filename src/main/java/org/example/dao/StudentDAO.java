@@ -1,10 +1,10 @@
 package org.example.dao;
 
 import org.example.db.DatabaseConnection;
+import org.example.module.Student;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class StudentDAO {
 
@@ -20,7 +20,7 @@ public class StudentDAO {
             pstmt.setString(3, career);
 
             pstmt.executeUpdate();
-            System.out.println("Usuario insertado correctamente");
+            System.out.println("student added");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -41,9 +41,9 @@ public class StudentDAO {
             int rowsAffected = pstmt.executeUpdate();
 
             if (rowsAffected > 0) {
-                System.out.println("usuario actualizado correctamente");
+                System.out.println("student updated");
             } else {
-                System.out.println("no se encontró usuario con id " + id);
+                System.out.println("there is not student with id " + id);
             }
 
         } catch (SQLException e) {
@@ -63,9 +63,9 @@ public class StudentDAO {
             int rowsAffected = pstmt.executeUpdate();
 
             if (rowsAffected > 0) {
-                System.out.println("usuario eliminado correctamente");
+                System.out.println("student deleted");
             } else {
-                System.out.println("no existe usuario con id " + id);
+                System.out.println("there is not student with id " + id);
             }
 
         } catch(SQLException e) {
@@ -73,5 +73,32 @@ public class StudentDAO {
         }
 
     }
+
+    public static ArrayList<Student> getAllStudents() {
+        String sql = "SELECT * FROM student";
+        ArrayList<Student> students = new ArrayList<>();
+
+        try(Connection conn = DatabaseConnection.getConnection();
+            Statement st = conn.createStatement()) {
+
+            ResultSet rs = st.executeQuery(sql);
+
+            while(rs.next()) {
+                Student s1 = new Student(rs.getInt("id"), rs.getString("name"),
+                                         rs.getInt("age"), rs.getString("career"));
+                students.add(s1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return students;
+    }
+
+    // get with id
+//    public static Student getStudent() {
+//        return "test";
+//    }
+
 
 }
