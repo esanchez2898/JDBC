@@ -75,17 +75,13 @@ public class Main {
                         }
                         break;
 
-//                    case 5:
-//                        System.out.println("5: Get Student By id");
-//                        System.out.print("\nPlease enter student name: ");
-//                        name =  sc.next();
-//                        System.out.print("\nPlease enter student age: ");
-//                        age = sc.nextInt();
-//                        System.out.print("\nPlease enter student career: ");
-//                        career = sc.next();
-//
-//                        StudentDAO.insertStudent(name, age, career);
-//                        break;
+                    case 5:
+                        System.out.println("5: Get Student By id");
+                        System.out.print("\nPlease enter student ID: ");
+                        id =  sc.nextInt();
+
+                        System.out.println(StudentDAO.getStudentById(id).getName());
+                        break;
 
                     case 6:
                         System.out.println("6: Exit");
